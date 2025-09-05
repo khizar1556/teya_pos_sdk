@@ -53,11 +53,9 @@ class TeyaConfig {
 
   Map<String, dynamic> toMap() {
     return {
-      'teyaIdHostUrl': teyaIdHostUrl,
-      'teyaApiHostUrl': teyaApiHostUrl,
       'clientId': clientId,
       'clientSecret': clientSecret,
-      'isProduction': isProduction,
+      'isProductionEnv': isProduction,
     };
   }
 

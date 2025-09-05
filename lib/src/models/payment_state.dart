@@ -81,6 +81,18 @@ class PaymentStateDetails {
   /// ePOS transaction ID
   final String? eposTransactionId;
   
+  /// Gateway payment ID for refunds
+  final String? gatewayPaymentId;
+  
+  /// Payment amount
+  final int? amount;
+  
+  /// Tip amount
+  final int? tip;
+  
+  /// Currency code
+  final String? currency;
+  
   /// Additional metadata
   final Map<String, dynamic>? metadata;
 
@@ -89,6 +101,10 @@ class PaymentStateDetails {
     this.reason,
     required this.isFinal,
     this.eposTransactionId,
+    this.gatewayPaymentId,
+    this.amount,
+    this.tip,
+    this.currency,
     this.metadata,
   });
 
@@ -98,6 +114,10 @@ class PaymentStateDetails {
       reason: map['reason'] != null ? _parsePaymentStateReason(map['reason']) : null,
       isFinal: map['isFinal'] ?? false,
       eposTransactionId: map['eposTransactionId'],
+      gatewayPaymentId: map['gatewayPaymentId'],
+      amount: map['amount'],
+      tip: map['tip'],
+      currency: map['currency'],
       metadata: map['metadata'] != null ? Map<String, dynamic>.from(map['metadata']) : null,
     );
   }
@@ -108,6 +128,10 @@ class PaymentStateDetails {
       'reason': reason != null ? _paymentStateReasonToString(reason!) : null,
       'isFinal': isFinal,
       'eposTransactionId': eposTransactionId,
+      'gatewayPaymentId': gatewayPaymentId,
+      'amount': amount,
+      'tip': tip,
+      'currency': currency,
       'metadata': metadata,
     };
   }
