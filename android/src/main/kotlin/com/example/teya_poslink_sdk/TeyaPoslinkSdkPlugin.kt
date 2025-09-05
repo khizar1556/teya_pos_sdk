@@ -3,9 +3,12 @@ package com.example.teya_poslink_sdk
 import android.app.Activity
 import android.content.Context
 import android.util.Log
-import com.teya.epos.unifiedsdk.TeyaPosLinkSDK
-import com.teya.epos.unifiedsdk.TeyaCommonTransactionsApi
-import com.teya.epos.unifiedsdk.Logger
+import com.teya.unifiedepossdk.PaymentStateSubscription
+import com.teya.unifiedepossdk.TeyaCommonTransactionsApi
+import com.teya.unifiedepossdk.TeyaPosLinkSDK
+import com.teya.unifiedepossdk.poslink.PosLinkSDK
+import com.teya.unifiedepossdk.poslink.PosLinkSDK.Failure
+import com.teya.sdkutilities.Logger
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -23,7 +26,7 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
     private var context: Context? = null
     private var activity: Activity? = null
 
-    private var teyaPosLinkSDK: TeyaPosLinkSDK? = null
+    private var teyaPosLinkSDK: PosLinkSDK? = null
     private var teyaIntegration: TeyaCommonTransactionsApi? = null
     private var paymentStateEventSink: EventChannel.EventSink? = null
 
@@ -51,15 +54,15 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
         try {
             val config = call.arguments as Map<String, Any>
             val isProductionEnv = config["isProductionEnv"] as? Boolean ?: false
-            
+
             teyaPosLinkSDK = TeyaPosLinkSDK(
-                isProductionEnv = isProductionEnv,
-                authConfig = TeyaPosLinkSDK.AuthConfig.Managed(
+                isProductionEnv = isProductionEnv, // Set to true for production
+                authConfig = PosLinkSDK.AuthConfig.Managed(
                     clientId = config["clientId"] as String,
                     clientSecret = config["clientSecret"] as String
                 ),
-                eposInstanceId = null,
-                logger = FlutterLogger()
+                eposInstanceId = null,  // Optional: identifier for your ePOS app instance
+                logger = FlutterLogger()   // Optional: your custom logger implementation
             )
 
             result.success(null)
@@ -105,8 +108,8 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
                 tip = tip
             )
 
-            val listener = object : com.teya.epos.unifiedsdk.PaymentStateSubscription.PaymentStateChangeListener {
-                override fun onPaymentStateChanged(state: com.teya.epos.unifiedsdk.PaymentStateSubscription.PaymentStateDetails) {
+            val listener = object : PaymentStateSubscription.PaymentStateChangeListener {
+                override fun onPaymentStateChanged(state: PaymentStateSubscription.PaymentStateDetails) {
                     // Send state change to Flutter
                     paymentStateEventSink?.success(mapOf(
                         "state" to state.state.name.lowercase(),
@@ -123,7 +126,7 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
                     // Handle final states
                     if (state.isFinal) {
                         when (state.state) {
-                            com.teya.epos.unifiedsdk.PaymentStateSubscription.PaymentState.Successful -> {
+                            PaymentStateSubscription.PaymentState.Successful -> {
                                 result.success(mapOf(
                                     "isSuccess" to true,
                                     "transactionId" to transactionId,
@@ -133,9 +136,9 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
                                     "metadata" to state.metadata
                                 ))
                             }
-                            com.teya.epos.unifiedsdk.PaymentStateSubscription.PaymentState.Processing_Failed,
-                            com.teya.epos.unifiedsdk.PaymentStateSubscription.PaymentState.Canceled,
-                            com.teya.epos.unifiedsdk.PaymentStateSubscription.PaymentState.Communication_Failed -> {
+                            PaymentStateSubscription.PaymentState.ProcessingFailed,
+                            PaymentStateSubscription.PaymentState.Canceled,
+                            PaymentStateSubscription.PaymentState.CommunicationFailed -> {
                                 result.error("PAYMENT_FAILED", "Payment failed: ${state.state}", mapOf(
                                     "transactionId" to transactionId,
                                     "finalState" to state.state.name.lowercase(),

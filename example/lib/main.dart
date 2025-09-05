@@ -33,8 +33,10 @@ class TeyaPaymentPage extends StatefulWidget {
 class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
   final TeyaSdk _teyaSdk = TeyaSdk.instance;
   final TextEditingController _amountController = TextEditingController(text: '5.50');
-  final TextEditingController _clientIdController = TextEditingController(text: 'e0a6cfa4-2034-4438-927e-3c8445de296f');
-  final TextEditingController _clientSecretController = TextEditingController(text: 'iU5NEtiMgONYnA2UW1C2azbIB7q4iKzKjTNl5m2KvEI');
+  //final TextEditingController _clientIdController = TextEditingController(text: 'e0a6cfa4-2034-4438-927e-3c8445de296f');
+  final TextEditingController _clientIdController = TextEditingController(text: "64c2fe54-e89f-4f06-8d81-0f1dc2bf95f8");
+  //final TextEditingController _clientSecretController = TextEditingController(text: 'iU5NEtiMgONYnA2UW1C2azbIB7q4iKzKjTNl5m2KvEI');
+  final TextEditingController _clientSecretController = TextEditingController(text: 'oQ1DAJQX3mm1-0k_p9f2EqJFH7szUMpxcAnQeS4GFBM');
 
   bool _isInitialized = false;
   bool _isProcessing = false;
@@ -72,7 +74,7 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
         });
       }
 
-      final config = TeyaConfig.sandbox(
+      final config = TeyaConfig.production(
         clientId: _clientIdController.text,
         clientSecret: _clientSecretController.text,
       );
