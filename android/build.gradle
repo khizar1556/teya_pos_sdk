@@ -6,9 +6,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        mavenLocal {
-            url = uri("/Users/macbookpro/Desktop/khizar/Main_Pro/testpro/TeyaPayment/teya_poslink_sdk/TeyaEposSDK/mavenRepository")
-        }
     }
 
     dependencies {
@@ -21,9 +18,6 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-        mavenLocal {
-            url = uri("/Users/macbookpro/Desktop/khizar/Main_Pro/testpro/TeyaPayment/teya_poslink_sdk/TeyaEposSDK/mavenRepository")
-        }
     }
 }
 
