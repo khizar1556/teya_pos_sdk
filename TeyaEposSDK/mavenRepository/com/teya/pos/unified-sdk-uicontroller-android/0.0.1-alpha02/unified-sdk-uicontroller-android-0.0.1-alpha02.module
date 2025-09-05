@@ -1,0 +1,121 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../unified-sdk-uicontroller/0.0.1-alpha02/unified-sdk-uicontroller-0.0.1-alpha02.module",
+    "group": "com.teya.pos",
+    "module": "unified-sdk-uicontroller",
+    "version": "0.0.1-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "compose-sdk-ui-controller.aar",
+          "url": "unified-sdk-uicontroller-android-0.0.1-alpha02.aar",
+          "size": 50946,
+          "sha512": "33bf3921c91b9dfa0f251c21db5edbc319c5a8eca1286a136c65b1e22db0e7a4d3ad364615c0108193a89509de1f58238d4736065ea0c357f742352c2a8630b2",
+          "sha256": "92292b1e2af45f282d5e99bef9e97db081a52137f8a1ffcdda6fb726ad591a9d",
+          "sha1": "e9d82b8c103a0adedc76779797f8760a2499496e",
+          "md5": "6f4f98cfae810026fda2c2cdaebc7f5b"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.activity",
+          "module": "activity-compose",
+          "version": {
+            "requires": "1.10.1"
+          }
+        },
+        {
+          "group": "com.teya.pos",
+          "module": "android-static-app-provider",
+          "version": {
+            "requires": "0.0.1-alpha02"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "compose-sdk-ui-controller.aar",
+          "url": "unified-sdk-uicontroller-android-0.0.1-alpha02.aar",
+          "size": 50946,
+          "sha512": "33bf3921c91b9dfa0f251c21db5edbc319c5a8eca1286a136c65b1e22db0e7a4d3ad364615c0108193a89509de1f58238d4736065ea0c357f742352c2a8630b2",
+          "sha256": "92292b1e2af45f282d5e99bef9e97db081a52137f8a1ffcdda6fb726ad591a9d",
+          "sha1": "e9d82b8c103a0adedc76779797f8760a2499496e",
+          "md5": "6f4f98cfae810026fda2c2cdaebc7f5b"
+        }
+      ]
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "compose-sdk-ui-controller-android-sources.jar",
+          "url": "unified-sdk-uicontroller-android-0.0.1-alpha02-sources.jar",
+          "size": 6784,
+          "sha512": "3a7b70f38efe5cc61f961aab92c56b948929d1bfe983ab4939f6e94304a606c978d399eef6a814914890abcc2a867688ef2337a7788fd1231dee8c581858c540",
+          "sha256": "c87fd4f7244cad8019784549c3ac209c0f9e2ab6bb09d5203914eb1e825dbe50",
+          "sha1": "32e23fbea2b54a19462864acb15db1d4641228bf",
+          "md5": "11fc370e4d0a2a0b8b68f9b0c709ce95"
+        }
+      ]
+    }
+  ]
+}

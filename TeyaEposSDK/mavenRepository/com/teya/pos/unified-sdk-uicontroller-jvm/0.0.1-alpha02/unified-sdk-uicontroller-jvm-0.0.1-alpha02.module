@@ -1,0 +1,121 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../unified-sdk-uicontroller/0.0.1-alpha02/unified-sdk-uicontroller-0.0.1-alpha02.module",
+    "group": "com.teya.pos",
+    "module": "unified-sdk-uicontroller",
+    "version": "0.0.1-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "compose-sdk-ui-controller-jvm.jar",
+          "url": "unified-sdk-uicontroller-jvm-0.0.1-alpha02.jar",
+          "size": 15695,
+          "sha512": "91ed12e797079868bf986accb6346791099a18f877b978191a4421c3a5a066c858a367f0e22939540988ecf179a8a889e2b106763e4cf03b2407965609cff618",
+          "sha256": "5417d8538d301f41889d42af0c9824cc815237ca0411cee73945806159b53a96",
+          "sha1": "c21ccafa7e244e15148204c6c743c10ddb928297",
+          "md5": "464689dd365c9a0233eda91d1b5ef12c"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.compose.desktop",
+          "module": "desktop-jvm-macos-arm64",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-swing",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "compose-sdk-ui-controller-jvm.jar",
+          "url": "unified-sdk-uicontroller-jvm-0.0.1-alpha02.jar",
+          "size": 15695,
+          "sha512": "91ed12e797079868bf986accb6346791099a18f877b978191a4421c3a5a066c858a367f0e22939540988ecf179a8a889e2b106763e4cf03b2407965609cff618",
+          "sha256": "5417d8538d301f41889d42af0c9824cc815237ca0411cee73945806159b53a96",
+          "sha1": "c21ccafa7e244e15148204c6c743c10ddb928297",
+          "md5": "464689dd365c9a0233eda91d1b5ef12c"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "compose-sdk-ui-controller-jvm-sources.jar",
+          "url": "unified-sdk-uicontroller-jvm-0.0.1-alpha02-sources.jar",
+          "size": 3399,
+          "sha512": "18c4a4554fc81c66a793fc00cde8158b8b0e252c67a00ce7821803e1c886034e20c7d4dc687c7d0bf4ed8b2a03702549730d173e488464a53f0137dbf8b23281",
+          "sha256": "2e581afdbac0c44617b58bc33fd4f7ae171d256c5ae93acd39f794dff95af3bd",
+          "sha1": "63bee17e6b30dcc405fde017a35b3587fafd82c6",
+          "md5": "780baf4c27471b8d560459431ba4b134"
+        }
+      ]
+    }
+  ]
+}

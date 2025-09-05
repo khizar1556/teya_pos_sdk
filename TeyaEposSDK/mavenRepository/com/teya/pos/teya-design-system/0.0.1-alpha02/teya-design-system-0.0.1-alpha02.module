@@ -1,0 +1,407 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.teya.pos",
+    "module": "teya-design-system",
+    "version": "0.0.1-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.material",
+          "module": "material",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.components",
+          "module": "components-resources",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "teya-design-system-metadata.jar",
+          "url": "teya-design-system-0.0.1-alpha02.jar",
+          "size": 19083,
+          "sha512": "14f87cb0419a03d7e0e41831feb5592b30734393c7d35d2aeda7fae1af751bb34c22fc71c9f5db25bf8c71916f5bc983c1129ba491d6b7473341d9772ab0b1e4",
+          "sha256": "487cbaf8955a3ed91928c93f8f6f28ac3cb7d39b7e5831f9dd3a2241668788ed",
+          "sha1": "0b6beba7de7bbccfd806f6304849b2c6ba792f11",
+          "md5": "bb60248aea8b98130d69d854ec370af1"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "teya-design-system-kotlin-sources.jar",
+          "url": "teya-design-system-0.0.1-alpha02-sources.jar",
+          "size": 21971,
+          "sha512": "e7eaab70a5642d5e5ec61c3b2b061d7aeda3d65bb81f508eab56caff28e7d8300af7949283ca40c7ed19e0eb44f547b34a060cc35488b900178b63be3d9687d5",
+          "sha256": "dd8d633ecc3451e2e4d10cccc82f6e10f77782177ffd33b5dca9911a2fbb3101",
+          "sha1": "ef004ef37d78ed71c328a71d812b57293e05e6b8",
+          "md5": "4da424e697fe067290058a716ca85d03"
+        }
+      ]
+    },
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-android/0.0.1-alpha02/teya-design-system-android-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-android",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-android/0.0.1-alpha02/teya-design-system-android-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-android",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-android/0.0.1-alpha02/teya-design-system-android-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-android",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosarm64/0.0.1-alpha02/teya-design-system-iosarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosarm64/0.0.1-alpha02/teya-design-system-iosarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosArm64ResourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.libraryelements": "kotlin-multiplatformresources",
+        "org.gradle.usage": "kotlin-multiplatformresources",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosarm64/0.0.1-alpha02/teya-design-system-iosarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosarm64/0.0.1-alpha02/teya-design-system-iosarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iossimulatorarm64/0.0.1-alpha02/teya-design-system-iossimulatorarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iossimulatorarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iossimulatorarm64/0.0.1-alpha02/teya-design-system-iossimulatorarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iossimulatorarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ResourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.libraryelements": "kotlin-multiplatformresources",
+        "org.gradle.usage": "kotlin-multiplatformresources",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iossimulatorarm64/0.0.1-alpha02/teya-design-system-iossimulatorarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iossimulatorarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iossimulatorarm64/0.0.1-alpha02/teya-design-system-iossimulatorarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iossimulatorarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosx64/0.0.1-alpha02/teya-design-system-iosx64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosx64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosx64/0.0.1-alpha02/teya-design-system-iosx64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosx64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosX64ResourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.libraryelements": "kotlin-multiplatformresources",
+        "org.gradle.usage": "kotlin-multiplatformresources",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosx64/0.0.1-alpha02/teya-design-system-iosx64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosx64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-iosx64/0.0.1-alpha02/teya-design-system-iosx64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-iosx64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-jvm/0.0.1-alpha02/teya-design-system-jvm-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-jvm",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-jvm/0.0.1-alpha02/teya-design-system-jvm-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-jvm",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-design-system-jvm/0.0.1-alpha02/teya-design-system-jvm-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-design-system-jvm",
+        "version": "0.0.1-alpha02"
+      }
+    }
+  ]
+}

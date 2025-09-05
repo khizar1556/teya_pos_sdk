@@ -1,0 +1,130 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../teya-design-system/0.0.1-alpha02/teya-design-system-0.0.1-alpha02.module",
+    "group": "com.teya.pos",
+    "module": "teya-design-system",
+    "version": "0.0.1-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "teya-design-system.aar",
+          "url": "teya-design-system-android-0.0.1-alpha02.aar",
+          "size": 483443,
+          "sha512": "04c8b54cff4cba738924ac2311231ebd6d213489bdd38030a6f652da36c18fbb059d23829554b434cc6f83e6d0e07c97644a45e6c55704484a0b88e4a527738f",
+          "sha256": "ebc0fc85491494952dbcae86b47ab76337510efa7bef5adfd2f9e14b701bf71a",
+          "sha1": "a69b6fbf42013783297e7b295e81bffc9ebb51ff",
+          "md5": "57278104312353a4159237ff978f85a8"
+        }
+      ]
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.material",
+          "module": "material",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.components",
+          "module": "components-resources",
+          "version": {
+            "requires": "1.8.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "teya-design-system.aar",
+          "url": "teya-design-system-android-0.0.1-alpha02.aar",
+          "size": 483443,
+          "sha512": "04c8b54cff4cba738924ac2311231ebd6d213489bdd38030a6f652da36c18fbb059d23829554b434cc6f83e6d0e07c97644a45e6c55704484a0b88e4a527738f",
+          "sha256": "ebc0fc85491494952dbcae86b47ab76337510efa7bef5adfd2f9e14b701bf71a",
+          "sha1": "a69b6fbf42013783297e7b295e81bffc9ebb51ff",
+          "md5": "57278104312353a4159237ff978f85a8"
+        }
+      ]
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "teya-design-system-android-sources.jar",
+          "url": "teya-design-system-android-0.0.1-alpha02-sources.jar",
+          "size": 24258,
+          "sha512": "15324185829ffdb66e8f87da8bfd5ddf61a5c02ed78f94542d05193caeb2255417cfa999f2ad4455c9f60173efa464d07273ce83140f8d200bc71d177cd52b18",
+          "sha256": "82bb59784cdbe897b905e27990d88ab2aae758a7f3d09b5cbef8230ec1e6ad77",
+          "sha1": "fb7839fdc95ab5e3c4f5d3105e4c8ed964dcb29d",
+          "md5": "4d51dde9da1b76f67e113e061af29a79"
+        }
+      ]
+    }
+  ]
+}

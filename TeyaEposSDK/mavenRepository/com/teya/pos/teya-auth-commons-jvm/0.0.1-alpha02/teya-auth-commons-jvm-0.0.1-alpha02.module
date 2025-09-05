@@ -1,0 +1,130 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../teya-auth-commons/0.0.1-alpha02/teya-auth-commons-0.0.1-alpha02.module",
+    "group": "com.teya.pos",
+    "module": "teya-auth-commons",
+    "version": "0.0.1-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.1.3"
+          }
+        },
+        {
+          "group": "com.teya.pos",
+          "module": "unified-sdk-logger",
+          "version": {
+            "requires": "0.0.1-alpha02"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "commons-jvm.jar",
+          "url": "teya-auth-commons-jvm-0.0.1-alpha02.jar",
+          "size": 7331,
+          "sha512": "b01208384778e9c1c3950d5eb1da5e60d61fb236ebc91c94cf6eb156b932b80c638bf7b3c63925099868c98dfb4caace198218401bc378c24a77ad3d9fa987dc",
+          "sha256": "d7771191a4286b6442363db2a715e43a243b6d09c491538c7ea157c2d8cc160c",
+          "sha1": "fd300442353deb508cf64992cfe0c2e5e836672e",
+          "md5": "4882f21b7bef89ffe867e2fdbe8da9ad"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.1.3"
+          }
+        },
+        {
+          "group": "com.teya.pos",
+          "module": "unified-sdk-logger",
+          "version": {
+            "requires": "0.0.1-alpha02"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "commons-jvm.jar",
+          "url": "teya-auth-commons-jvm-0.0.1-alpha02.jar",
+          "size": 7331,
+          "sha512": "b01208384778e9c1c3950d5eb1da5e60d61fb236ebc91c94cf6eb156b932b80c638bf7b3c63925099868c98dfb4caace198218401bc378c24a77ad3d9fa987dc",
+          "sha256": "d7771191a4286b6442363db2a715e43a243b6d09c491538c7ea157c2d8cc160c",
+          "sha1": "fd300442353deb508cf64992cfe0c2e5e836672e",
+          "md5": "4882f21b7bef89ffe867e2fdbe8da9ad"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "commons-jvm-sources.jar",
+          "url": "teya-auth-commons-jvm-0.0.1-alpha02-sources.jar",
+          "size": 2551,
+          "sha512": "4b822f018ae7834cc3c81c92d8e517401ef13eb6ae35c2a0a89b76a3ae0fb753c8db93747432a5fc1d6fe8b4de60b0f7d99a6db072d9bff953aa60baa7164cfa",
+          "sha256": "d9a4c5ac0d83e30a94785cce6cc6b22055bd69c83410ddc431da3bb1b0095cf3",
+          "sha1": "c8b9211878245fe375de9dc3254d87000c740020",
+          "md5": "6188a6cde9ed2341a10da78bdf303e94"
+        }
+      ]
+    }
+  ]
+}

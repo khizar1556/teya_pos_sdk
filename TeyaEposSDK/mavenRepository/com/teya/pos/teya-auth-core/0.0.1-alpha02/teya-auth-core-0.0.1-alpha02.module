@@ -1,0 +1,395 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.teya.pos",
+    "module": "teya-auth-core",
+    "version": "0.0.1-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "com.teya.pos",
+          "module": "teya-auth-commons",
+          "version": {
+            "requires": "0.0.1-alpha02"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.1.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.1.20"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.1.3"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.1.3"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-encoding",
+          "version": {
+            "requires": "3.1.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "com.michael-bull.kotlin-result",
+          "module": "kotlin-result",
+          "version": {
+            "requires": "1.1.20"
+          }
+        },
+        {
+          "group": "com.michael-bull.kotlin-result",
+          "module": "kotlin-result-coroutines",
+          "version": {
+            "requires": "1.1.20"
+          }
+        },
+        {
+          "group": "com.russhwolf",
+          "module": "multiplatform-settings-no-arg",
+          "version": {
+            "requires": "1.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.6.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "core-metadata.jar",
+          "url": "teya-auth-core-0.0.1-alpha02.jar",
+          "size": 18185,
+          "sha512": "104dcd14d26a2030194c085e1233f1fcc366dcfa4def240df9af5a08123b5ccacf31a6c70bd018895154dd51ee97743ee3aa7e6167d6f6a9b63d6be7627a9c99",
+          "sha256": "36ffdb5f8c65572a37c93412467629ac950bc59aafa19838e76469f1d98d5eb8",
+          "sha1": "8e740d49b31aa4d6a8fc9e01abc9d0adaf81d8ca",
+          "md5": "4d4cc9ecbc091f7f3b665d4b8ef70626"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "core-kotlin-sources.jar",
+          "url": "teya-auth-core-0.0.1-alpha02-sources.jar",
+          "size": 17841,
+          "sha512": "24c23ab1a2728fb0fa99fae6d3b52c0fb79df98c46413f181a1da267e19057212ea8bb62ff0345197be4f26f655c1034dd9a4216a7585adfa0f5b0aa09688da3",
+          "sha256": "5246fe2023747cbdb82522a1fed3d4456267301c4ee2a9444a4870cb8d84c54d",
+          "sha1": "1309172483a996c5176dd76a19c952fbedf9e951",
+          "md5": "8f44c303fcf9577fdb537c6b9fba10af"
+        }
+      ]
+    },
+    {
+      "name": "androidApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-android/0.0.1-alpha02/teya-auth-core-android-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-android",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "androidRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-android/0.0.1-alpha02/teya-auth-core-android-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-android",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "androidSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-android/0.0.1-alpha02/teya-auth-core-android-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-android",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iosarm64/0.0.1-alpha02/teya-auth-core-iosarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iosarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iosarm64/0.0.1-alpha02/teya-auth-core-iosarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iosarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iosarm64/0.0.1-alpha02/teya-auth-core-iosarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iosarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iossimulatorarm64/0.0.1-alpha02/teya-auth-core-iossimulatorarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iossimulatorarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iossimulatorarm64/0.0.1-alpha02/teya-auth-core-iossimulatorarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iossimulatorarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iossimulatorarm64/0.0.1-alpha02/teya-auth-core-iossimulatorarm64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iossimulatorarm64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosX64ApiElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iosx64/0.0.1-alpha02/teya-auth-core-iosx64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iosx64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosX64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iosx64/0.0.1-alpha02/teya-auth-core-iosx64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iosx64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "iosX64MetadataElements-published",
+      "attributes": {
+        "artifactType": "org.jetbrains.kotlin.klib",
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_x64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-iosx64/0.0.1-alpha02/teya-auth-core-iosx64-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-iosx64",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-jvm/0.0.1-alpha02/teya-auth-core-jvm-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-jvm",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-jvm/0.0.1-alpha02/teya-auth-core-jvm-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-jvm",
+        "version": "0.0.1-alpha02"
+      }
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../teya-auth-core-jvm/0.0.1-alpha02/teya-auth-core-jvm-0.0.1-alpha02.module",
+        "group": "com.teya.pos",
+        "module": "teya-auth-core-jvm",
+        "version": "0.0.1-alpha02"
+      }
+    }
+  ]
+}

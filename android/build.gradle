@@ -1,0 +1,62 @@
+group 'com.example.teya_poslink_sdk'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '2.1.0'
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal {
+            url = uri("/Users/macbookpro/Desktop/khizar/Main_Pro/testpro/TeyaPayment/teya_poslink_sdk/TeyaEposSDK/mavenRepository")
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.9.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal {
+            url = uri("/Users/macbookpro/Desktop/khizar/Main_Pro/testpro/TeyaPayment/teya_poslink_sdk/TeyaEposSDK/mavenRepository")
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdk 35
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.example.teya_poslink_sdk'
+    }
+    
+    // Don't enforce a specific NDK version to allow flexibility
+    // ndkVersion "27.0.12077973"
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdk 21
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.teya.pos:unified-sdk-core:0.0.1-alpha02'
+}
