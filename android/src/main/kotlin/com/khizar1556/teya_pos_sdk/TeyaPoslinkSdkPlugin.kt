@@ -1,8 +1,9 @@
-package com.example.teya_poslink_sdk
+package com.khizar1556.teya_pos_sdk
 
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import com.teya.unifiedepossdk.GatewayPaymentId
 import com.teya.unifiedepossdk.PaymentStateSubscription
 import com.teya.unifiedepossdk.TeyaCommonTransactionsApi
 import com.teya.unifiedepossdk.TeyaPosLinkSDK
@@ -31,10 +32,10 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
     private var paymentStateEventSink: EventChannel.EventSink? = null
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "teya_poslink_sdk")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "teya_pos_sdk")
         channel.setMethodCallHandler(this)
         
-        paymentStateChannel = EventChannel(flutterPluginBinding.binaryMessenger, "teya_poslink_sdk/payment_state")
+        paymentStateChannel = EventChannel(flutterPluginBinding.binaryMessenger, "teya_pos_sdk/payment_state")
         paymentStateChannel.setStreamHandler(this)
         
         context = flutterPluginBinding.applicationContext
@@ -46,6 +47,7 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
             "setupPosLink" -> setupPosLink(result)
             "makePayment" -> makePayment(call, result)
             "cancelPayment" -> cancelPayment(result)
+            "isReadyForUI" -> checkUIAvailability(result)
             else -> result.notImplemented()
         }
     }
@@ -77,15 +79,32 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
             return
         }
 
-        teyaPosLinkSDK!!.setupTransactionsApi(
-            onFailure = { failure ->
-                result.error("SETUP_FAILED", failure.toString(), null)
-            },
-            onSuccess = { integration ->
-                teyaIntegration = integration
-                result.success(null)
+        // Ensure we have an activity context for UI navigation
+        if (activity == null) {
+            result.error("ACTIVITY_NOT_AVAILABLE", "Activity context is not available for UI navigation", null)
+            return
+        }
+
+        // Run on UI thread to ensure proper context
+        activity!!.runOnUiThread {
+            try {
+                Log.d("TeyaSDK", "Starting PosLink setup with activity context: ${activity!!.javaClass.simpleName}")
+                teyaPosLinkSDK!!.setupTransactionsApi(
+                    onFailure = { failure ->
+                        Log.e("TeyaSDK", "PosLink setup failed: $failure")
+                        result.error("SETUP_FAILED", failure.toString(), null)
+                    },
+                    onSuccess = { integration ->
+                        Log.d("TeyaSDK", "PosLink setup successful")
+                        teyaIntegration = integration
+                        result.success(null)
+                    }
+                )
+            } catch (e: Exception) {
+                Log.e("TeyaSDK", "Exception during PosLink setup: ${e.message}", e)
+                result.error("SETUP_EXCEPTION", e.message, null)
             }
-        )
+        }
     }
 
     private fun makePayment(call: MethodCall, result: Result) {
@@ -111,40 +130,38 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
             val listener = object : PaymentStateSubscription.PaymentStateChangeListener {
                 override fun onPaymentStateChanged(state: PaymentStateSubscription.PaymentStateDetails) {
                     // Send state change to Flutter
-                    paymentStateEventSink?.success(mapOf(
+                    paymentStateEventSink?.success(state.toMap())
+                   /* paymentStateEventSink?.success(mapOf(
                         "state" to state.state.name.lowercase(),
                         "reason" to (state.reason?.name?.lowercase()),
                         "isFinal" to state.isFinal,
                         "eposTransactionId" to state.eposTransactionId,
-                        "gatewayPaymentId" to state.gatewayPaymentId,
+                        "gatewayPaymentId" to state.gatewayPaymentId?.id,
                         "amount" to state.amount,
                         "tip" to state.tip,
                         "currency" to state.currency,
                         "metadata" to state.metadata
                     ))
+                    */
 
                     // Handle final states
                     if (state.isFinal) {
                         when (state.state) {
                             PaymentStateSubscription.PaymentState.Successful -> {
-                                result.success(mapOf(
+                               /* result.success(mapOf(
                                     "isSuccess" to true,
                                     "transactionId" to transactionId,
                                     "eposTransactionId" to state.eposTransactionId,
                                     "gatewayPaymentId" to state.gatewayPaymentId,
                                     "finalState" to "successful",
                                     "metadata" to state.metadata
-                                ))
+                                ))*/
+                                result.success(state.toMap())
                             }
                             PaymentStateSubscription.PaymentState.ProcessingFailed,
                             PaymentStateSubscription.PaymentState.Canceled,
                             PaymentStateSubscription.PaymentState.CommunicationFailed -> {
-                                result.error("PAYMENT_FAILED", "Payment failed: ${state.state}", mapOf(
-                                    "transactionId" to transactionId,
-                                    "finalState" to state.state.name.lowercase(),
-                                    "reason" to state.reason?.name?.lowercase(),
-                                    "metadata" to state.metadata
-                                ))
+                                result.error("PAYMENT_FAILED", "Payment failed: ${state.state}", state.toMap())
                             }
                             else -> {
                                 // Handle other final states if needed
@@ -167,6 +184,16 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
         result.success(false) // Placeholder - implement based on your needs
     }
 
+    private fun checkUIAvailability(result: Result) {
+        val isReady = activity != null && teyaPosLinkSDK != null
+        result.success(mapOf(
+            "isReady" to isReady,
+            "hasActivity" to (activity != null),
+            "hasSDK" to (teyaPosLinkSDK != null),
+            "activityType" to (activity?.javaClass?.simpleName ?: "null")
+        ))
+    }
+
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
         paymentStateChannel.setStreamHandler(null)
@@ -174,17 +201,25 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
         activity = binding.activity
+        Log.d("TeyaSDK", "Activity attached: ${activity?.javaClass?.simpleName}")
+        binding.addActivityResultListener { requestCode, resultCode, data ->
+            Log.d("TeyaSDK", "Activity result: $requestCode $resultCode $data")
+            false // SDK ko propagate karna zaroori ho sakta hai
+        }
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
+        Log.d("TeyaSDK", "Activity detached for config changes")
         activity = null
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
         activity = binding.activity
+        Log.d("TeyaSDK", "Activity reattached after config changes: ${activity?.javaClass?.simpleName}")
     }
 
     override fun onDetachedFromActivity() {
+        Log.d("TeyaSDK", "Activity detached")
         activity = null
     }
 
@@ -215,4 +250,43 @@ class FlutterLogger : Logger {
     override fun e(message: String) {
         Log.e("TeyaSDK", message)
     }
+}
+fun PaymentStateSubscription.PaymentStateDetails.toMap(): Map<String, Any?> {
+    return mapOf(
+        "eposTransactionId" to eposTransactionId,
+        "amount" to amount,
+        "tip" to tip,
+        "currency" to currency,
+        "state" to state.toString(),
+        "gatewayPaymentId" to gatewayPaymentId?.toMap(),
+        "reason" to reason,
+        "metadata" to metadata?.toMap(),
+        "wasUnsubscribed" to wasUnsubscribed
+    )
+}
+
+fun PaymentStateSubscription.PaymentStateDetails.Metadata.toMap(): Map<String, Any?> {
+    return mapOf(
+        "card" to card?.toMap(),
+        "entryMode" to entryMode.toString(),
+        "verificationMethod" to (verificationMethod?.name ?: ""),
+        "applicationId" to applicationId,
+        "merchantAcquiringId" to merchantAcquiringId,
+        "responseCode" to responseCode,
+        "authorisationCode" to authorisationCode
+    )
+}
+
+fun PaymentStateSubscription.PaymentStateDetails.Metadata.Card.toMap(): Map<String, Any?> {
+    return mapOf(
+        "last4" to last4,
+        "issuingCountry" to issuingCountry,
+        "brand" to brand.name,
+        "type" to (type?.name ?: "")
+    )
+}
+fun GatewayPaymentId.toMap(): Map<String, Any?> {
+    return mapOf(
+        "id" to id,
+    )
 }

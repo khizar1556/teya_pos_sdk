@@ -12,7 +12,7 @@ class PaymentResult {
   final String? eposTransactionId;
   
   /// Gateway payment ID for refunds
-  final String? gatewayPaymentId;
+  final String?  gatewayPaymentId;
   
   /// Final payment state
   final PaymentState? finalState;
@@ -143,3 +143,5 @@ class PaymentResult {
     }
   }
 }
+
+

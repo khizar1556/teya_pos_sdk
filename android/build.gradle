@@ -1,4 +1,4 @@
-group 'com.example.teya_poslink_sdk'
+group 'com.khizar1556.teya_pos_sdk'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -27,7 +27,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdk 35
     if (project.android.hasProperty("namespace")) {
-        namespace 'com.example.teya_poslink_sdk'
+        namespace 'com.khizar1556.teya_pos_sdk'
     }
     
     // Don't enforce a specific NDK version to allow flexibility

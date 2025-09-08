@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  teya_poslink_sdk:
+  teya_pos_sdk:
     path: ../
 
 dev_dependencies:

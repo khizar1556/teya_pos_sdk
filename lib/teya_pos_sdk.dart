@@ -1,4 +1,4 @@
-library teya_poslink_sdk;
+library teya_pos_sdk;
 
 export 'src/teya_sdk.dart';
 export 'src/models/payment_state.dart';

@@ -1,3 +1,5 @@
+import 'package:teya_pos_sdk/src/models/payment_result.dart';
+
 /// Represents the state of a payment transaction
 enum PaymentState {
   /// Payment is new and hasn't started processing
@@ -82,7 +84,7 @@ class PaymentStateDetails {
   final String? eposTransactionId;
   
   /// Gateway payment ID for refunds
-  final String? gatewayPaymentId;
+  final GatewayPaymentId? gatewayPaymentId;
   
   /// Payment amount
   final int? amount;
@@ -94,7 +96,7 @@ class PaymentStateDetails {
   final String? currency;
   
   /// Additional metadata
-  final Map<String, dynamic>? metadata;
+  final Metadata? metadata;
 
   const PaymentStateDetails({
     required this.state,
@@ -114,11 +116,11 @@ class PaymentStateDetails {
       reason: map['reason'] != null ? _parsePaymentStateReason(map['reason']) : null,
       isFinal: map['isFinal'] ?? false,
       eposTransactionId: map['eposTransactionId'],
-      gatewayPaymentId: map['gatewayPaymentId'],
+      gatewayPaymentId: map['gatewayPaymentId']!=null ? GatewayPaymentId.fromMap(map['gatewayPaymentId']):null,
       amount: map['amount'],
       tip: map['tip'],
       currency: map['currency'],
-      metadata: map['metadata'] != null ? Map<String, dynamic>.from(map['metadata']) : null,
+      metadata: map["metadata"] != null ? Metadata.fromMap(map["metadata"]) : null,
     );
   }
 
@@ -247,3 +249,71 @@ class PaymentStateDetails {
     return 'PaymentStateDetails(state: $state, reason: $reason, isFinal: $isFinal, eposTransactionId: $eposTransactionId)';
   }
 }
+class Metadata {
+  final CardModel? card;
+  final String entryMode;
+  final String verificationMethod;
+  final String? applicationId;
+  final String merchantAcquiringId;
+  final String responseCode;
+  final String authorisationCode;
+
+  Metadata({
+    this.card,
+    required this.entryMode,
+    required this.verificationMethod,
+    this.applicationId,
+    required this.merchantAcquiringId,
+    required this.responseCode,
+    required this.authorisationCode,
+  });
+
+  factory Metadata.fromMap(Map<dynamic, dynamic> map) {
+    return Metadata(
+      card: map["card"] != null ? CardModel.fromMap(map["card"]) : null,
+      entryMode: map["entryMode"],
+      verificationMethod: map["verificationMethod"],
+      applicationId: map["applicationId"],
+      merchantAcquiringId: map["merchantAcquiringId"],
+      responseCode: map["responseCode"],
+      authorisationCode: map["authorisationCode"],
+    );
+  }
+}
+
+class CardModel {
+  final String last4;
+  final String? issuingCountry;
+  final String brand;
+  final String? type;
+
+  CardModel({
+    required this.last4,
+    this.issuingCountry,
+    required this.brand,
+    this.type,
+  });
+
+  factory CardModel.fromMap(Map<dynamic, dynamic> map) {
+    return CardModel(
+      last4: map["last4"],
+      issuingCountry: map["issuingCountry"],
+      brand: map["brand"],
+      type: map["type"],
+    );
+  }
+}
+class GatewayPaymentId {
+  final String? id;
+
+  GatewayPaymentId({
+    this.id,
+  });
+
+  factory GatewayPaymentId.fromMap(Map<dynamic, dynamic> map) {
+    return GatewayPaymentId(
+      id: map["id"],
+    );
+  }
+}
+
