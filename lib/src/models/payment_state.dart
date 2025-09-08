@@ -1,4 +1,3 @@
-import 'package:teya_pos_sdk/src/models/payment_result.dart';
 
 /// Represents the state of a payment transaction
 enum PaymentState {
