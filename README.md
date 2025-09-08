@@ -25,7 +25,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  teya_pos_sdk: ^1.0.0
+  teya_pos_sdk: ^1.0.1
 ```
 
 ## Setup
