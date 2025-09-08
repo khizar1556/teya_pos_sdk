@@ -1,7 +1,7 @@
 name: teya_pos_sdk
 description: Flutter plugin for Teya PosLink SDK (Android only)
 version: 1.0.1
-publish_to: 'https://pub.dev'
+publish_to: 'pub.dev'
 homepage: https://github.com/khizar1556/teya_pos_sdk
 repository: https://github.com/khizar1556/teya_pos_sdk
 issue_tracker: https://github.com/khizar1556/teya_pos_sdk/issues
