@@ -1,5 +1,7 @@
 # Teya PosLink SDK
 
+[![pub package](https://img.shields.io/pub/v/teya_pos_sdk.svg)](https://pub.dartlang.org/packages/teya_pos_sdk)
+
 A Flutter plugin that provides access to the Teya PosLink SDK for Android. This plugin allows you to integrate Teya payment terminals into your Flutter applications.
 
 **Author**: [Khizar Rehman](https://khizarrehman.com/)
