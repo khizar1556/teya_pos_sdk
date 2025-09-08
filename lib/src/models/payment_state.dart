@@ -1,27 +1,26 @@
-
 /// Represents the state of a payment transaction
 enum PaymentState {
   /// Payment is new and hasn't started processing
   new_,
-  
+
   /// Payment is in progress
   inProgress,
-  
+
   /// Payment is pending
   pending,
-  
+
   /// Payment was successful
   successful,
-  
+
   /// Payment was cancelled
   cancelled,
-  
+
   /// Payment is being cancelled
   cancelling,
-  
+
   /// Payment processing failed
   processingFailed,
-  
+
   /// Communication with payment terminal failed
   communicationFailed,
 }
@@ -30,40 +29,40 @@ enum PaymentState {
 enum PaymentStateReason {
   /// Cancelled by the ePOS terminal
   cancelledByEpos,
-  
+
   /// Cancelled by the user
   cancelledByUser,
-  
+
   /// Communication failed due to authentication required
   communicationFailedAuthRequired,
-  
+
   /// Communication failed due to network issues
   communicationFailedNetwork,
-  
+
   /// Communication failed unexpectedly
   communicationFailedUnexpectedly,
-  
+
   /// Payment expired
   expired,
-  
+
   /// Card processing error
   processingFailedCardProcessingError,
-  
+
   /// Communication timeout
   processingFailedCommTimeout,
-  
+
   /// Connection error
   processingFailedConnectionError,
-  
+
   /// Card declined offline
   processingFailedDeclinedOffline,
-  
+
   /// Card declined online
   processingFailedDeclinedOnline,
-  
+
   /// Processing timeout
   processingFailedTimeout,
-  
+
   /// Unknown reason
   unknown,
 }
@@ -72,28 +71,28 @@ enum PaymentStateReason {
 class PaymentStateDetails {
   /// Current payment state
   final PaymentState state;
-  
+
   /// Reason for the state change
   final PaymentStateReason? reason;
-  
+
   /// Whether this is a final state
   final bool isFinal;
-  
+
   /// ePOS transaction ID
   final String? eposTransactionId;
-  
+
   /// Gateway payment ID for refunds
   final GatewayPaymentId? gatewayPaymentId;
-  
+
   /// Payment amount
   final int? amount;
-  
+
   /// Tip amount
   final int? tip;
-  
+
   /// Currency code
   final String? currency;
-  
+
   /// Additional metadata
   final Metadata? metadata;
 
@@ -112,14 +111,19 @@ class PaymentStateDetails {
   factory PaymentStateDetails.fromMap(Map<String, dynamic> map) {
     return PaymentStateDetails(
       state: _parsePaymentState(map['state']),
-      reason: map['reason'] != null ? _parsePaymentStateReason(map['reason']) : null,
+      reason: map['reason'] != null
+          ? _parsePaymentStateReason(map['reason'])
+          : null,
       isFinal: map['isFinal'] ?? false,
       eposTransactionId: map['eposTransactionId'],
-      gatewayPaymentId: map['gatewayPaymentId']!=null ? GatewayPaymentId.fromMap(map['gatewayPaymentId']):null,
+      gatewayPaymentId: map['gatewayPaymentId'] != null
+          ? GatewayPaymentId.fromMap(map['gatewayPaymentId'])
+          : null,
       amount: map['amount'],
       tip: map['tip'],
       currency: map['currency'],
-      metadata: map["metadata"] != null ? Metadata.fromMap(map["metadata"]) : null,
+      metadata:
+          map["metadata"] != null ? Metadata.fromMap(map["metadata"]) : null,
     );
   }
 
@@ -248,6 +252,7 @@ class PaymentStateDetails {
     return 'PaymentStateDetails(state: $state, reason: $reason, isFinal: $isFinal, eposTransactionId: $eposTransactionId)';
   }
 }
+
 class Metadata {
   final CardModel? card;
   final String entryMode;
@@ -302,6 +307,7 @@ class CardModel {
     );
   }
 }
+
 class GatewayPaymentId {
   final String? id;
 
@@ -315,4 +321,3 @@ class GatewayPaymentId {
     );
   }
 }
-

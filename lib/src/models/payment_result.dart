@@ -4,22 +4,22 @@ import 'payment_state.dart';
 class PaymentResult {
   /// Whether the payment was successful
   final bool isSuccess;
-  
+
   /// Transaction ID
   final String? transactionId;
-  
+
   /// ePOS transaction ID
   final String? eposTransactionId;
-  
+
   /// Gateway payment ID for refunds
-  final String?  gatewayPaymentId;
-  
+  final String? gatewayPaymentId;
+
   /// Final payment state
   final PaymentState? finalState;
-  
+
   /// Error details if payment failed
   final String? errorMessage;
-  
+
   /// Additional metadata
   final Map<String, dynamic>? metadata;
 
@@ -70,12 +70,12 @@ class PaymentResult {
       transactionId: map['transactionId'],
       eposTransactionId: map['eposTransactionId'],
       gatewayPaymentId: map['gatewayPaymentId'],
-      finalState: map['finalState'] != null 
+      finalState: map['finalState'] != null
           ? _parsePaymentState(map['finalState'])
           : null,
       errorMessage: map['errorMessage'],
-      metadata: map['metadata'] != null 
-          ? Map<String, dynamic>.from(map['metadata']) 
+      metadata: map['metadata'] != null
+          ? Map<String, dynamic>.from(map['metadata'])
           : null,
     );
   }
@@ -86,9 +86,8 @@ class PaymentResult {
       'transactionId': transactionId,
       'eposTransactionId': eposTransactionId,
       'gatewayPaymentId': gatewayPaymentId,
-      'finalState': finalState != null 
-          ? _paymentStateToString(finalState!)
-          : null,
+      'finalState':
+          finalState != null ? _paymentStateToString(finalState!) : null,
       'errorMessage': errorMessage,
       'metadata': metadata,
     };
@@ -143,5 +142,3 @@ class PaymentResult {
     }
   }
 }
-
-
