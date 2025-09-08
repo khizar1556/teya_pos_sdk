@@ -1,6 +1,10 @@
 # Teya PosLink SDK
 
+[![pub package](https://img.shields.io/pub/v/teya_pos_sdk.svg)](https://pub.dartlang.org/packages/teya_pos_sdk)
+
 A Flutter plugin that provides access to the Teya PosLink SDK for Android. This plugin allows you to integrate Teya payment terminals into your Flutter applications.
+
+**Author**: [Khizar Rehman](https://khizarrehman.com/)
 
 > **⚠️ Platform Support Notice**: This plugin currently supports **Android only**. iOS support is not available as the Teya SDK does not provide iOS support yet.
 
@@ -21,31 +25,14 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  teya_poslink_sdk:
-    path: ../teya_poslink_sdk  # Adjust path as needed
+  teya_pos_sdk: ^1.0.0
 ```
 
 ## Setup
 
 ### Android Setup
 
-1. **Add Teya SDK Repository**
-
-   Add the Teya SDK repository to your `android/settings.gradle` file:
-
-   ```gradle
-   allprojects {
-       repositories {
-           google()
-           mavenCentral()
-           mavenLocal {
-               url = uri("$rootDir/../teya_poslink_sdk/TeyaEposSDK/mavenRepository")
-           }
-       }
-   }
-   ```
-
-2. **Minimum SDK Version**
+1. **Minimum SDK Version**
 
    Ensure your `android/app/build.gradle` has a minimum SDK version of 24:
 
@@ -57,7 +44,7 @@ dependencies:
    }
    ```
 
-3. **Permissions**
+2. **Permissions**
 
    Add the following permissions to your `android/app/src/main/AndroidManifest.xml`:
 
@@ -71,7 +58,7 @@ dependencies:
 ### 1. Initialize the SDK
 
 ```dart
-import 'package:teya_poslink_sdk/teya_poslink_sdk.dart';
+import 'package:teya_pos_sdk/teya_pos_sdk.dart';
 
 final teyaSdk = TeyaSdk.instance;
 
@@ -82,7 +69,14 @@ final config = TeyaConfig.sandbox(
 );
 
 await teyaSdk.initialize(config);
-await teyaSdk.setupPosLink();
+
+// Check if SDK is ready for UI operations
+final uiStatus = await teyaSdk.isReadyForUI();
+if (uiStatus['isReady']) {
+  await teyaSdk.setupPosLink();
+} else {
+  print('SDK not ready for UI operations');
+}
 ```
 
 ### 2. Make a Payment
@@ -123,7 +117,21 @@ teyaSdk.paymentStateStream.listen((state) {
 });
 ```
 
-### 4. Cancel a Payment
+### 4. Check UI Readiness
+
+```dart
+// Check if the SDK is ready for UI operations before setup
+final uiStatus = await teyaSdk.isReadyForUI();
+if (uiStatus['isReady']) {
+  await teyaSdk.setupPosLink();
+} else {
+  print('SDK not ready for UI operations');
+  print('Has activity: ${uiStatus['hasActivity']}');
+  print('Has SDK: ${uiStatus['hasSDK']}');
+}
+```
+
+### 5. Cancel a Payment
 
 ```dart
 final cancelled = await teyaSdk.cancelPayment();
@@ -148,6 +156,7 @@ The main class for interacting with the Teya SDK.
 - `makePaymentEUR({required double amountInEuros, String? transactionId, double? tipInEuros})` - Make a payment in EUR
 - `makePaymentUSD({required double amountInDollars, String? transactionId, double? tipInDollars})` - Make a payment in USD
 - `cancelPayment()` - Cancel the current payment
+- `isReadyForUI()` - Check if the SDK is ready for UI operations
 - `dispose()` - Dispose the SDK and clean up resources
 
 #### Properties
@@ -204,6 +213,51 @@ try {
   print('Unexpected error: $e');
 }
 ```
+
+## Troubleshooting
+
+### Common Issues
+
+#### 1. SDK Navigation Not Working
+
+If the Teya setup UI opens but navigation doesn't work when clicking buttons:
+
+**Solution**: Ensure the SDK is ready for UI operations before calling `setupPosLink()`:
+
+```dart
+// Check UI readiness first
+final uiStatus = await teyaSdk.isReadyForUI();
+if (!uiStatus['isReady']) {
+  print('SDK not ready for UI operations');
+  return;
+}
+
+await teyaSdk.setupPosLink();
+```
+
+#### 2. Activity Context Not Available
+
+If you get "Activity context is not available" error:
+
+**Solution**: Make sure you're calling the SDK methods from a Flutter widget that has an active Android activity context. The SDK needs an activity context to display UI.
+
+#### 3. Setup Failed Errors
+
+If `setupPosLink()` fails:
+
+**Solution**: Check the Android logs for detailed error information:
+
+```bash
+flutter logs
+```
+
+Look for logs with the "TeyaSDK" tag for detailed debugging information.
+
+#### 4. Platform Not Supported on iOS
+
+If you get platform not supported errors on iOS:
+
+**Solution**: This plugin only supports Android. The Teya SDK does not provide iOS support yet.
 
 ## Example
 

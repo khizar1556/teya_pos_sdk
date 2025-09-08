@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:teya_poslink_sdk/teya_poslink_sdk.dart';
+import 'package:teya_pos_sdk/teya_pos_sdk.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,9 +33,10 @@ class TeyaPaymentPage extends StatefulWidget {
 
 class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
   final TeyaSdk _teyaSdk = TeyaSdk.instance;
-  final TextEditingController _amountController = TextEditingController(text: '5.50');
-  final TextEditingController _clientIdController = TextEditingController(text: 'e0a6cfa4-2034-4438-927e-3c8445de296f');
-  final TextEditingController _clientSecretController = TextEditingController(text: 'iU5NEtiMgONYnA2UW1C2azbIB7q4iKzKjTNl5m2KvEI');
+  final TextEditingController _amountController =
+      TextEditingController(text: '5.50');
+  final TextEditingController _clientIdController = TextEditingController();
+  final TextEditingController _clientSecretController = TextEditingController();
 
   bool _isInitialized = false;
   bool _isProcessing = false;
@@ -76,11 +78,26 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
         clientId: _clientIdController.text,
         clientSecret: _clientSecretController.text,
       );
-      
+
       // Perform heavy operations
-      if(!_teyaSdk.isInitialized){
+      if (!_teyaSdk.isInitialized) {
         await _teyaSdk.initialize(config);
       }
+
+      // Check if SDK is ready for UI operations
+      final uiStatus = await _teyaSdk.isReadyForUI();
+      if (mounted) {
+        setState(() {
+          _status =
+              'Checking UI readiness... ${uiStatus['isReady'] ? 'Ready' : 'Not ready'}';
+        });
+      }
+
+      if (!uiStatus['isReady']) {
+        throw Exception(
+            'SDK not ready for UI operations. Activity: ${uiStatus['hasActivity']}, SDK: ${uiStatus['hasSDK']}');
+      }
+
       await _teyaSdk.setupPosLink();
 
       // Update UI after successful initialization
@@ -99,7 +116,8 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
               _debounceTimer = Timer(const Duration(milliseconds: 100), () {
                 if (mounted) {
                   setState(() {
-                    _status = 'Payment state: ${state.state.name} (Final: ${state.isFinal})';
+                    _status =
+                        'Payment state: ${state.state.name} (Final: ${state.isFinal})\n(Data : ${state.toString()})';
                   });
                 }
               });
@@ -114,7 +132,6 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
           },
         );
       }
-
     } catch (e) {
       if (mounted) {
         setState(() {
@@ -137,7 +154,7 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
       }
 
       final amount = double.tryParse(_amountController.text) ?? 0.0;
-      
+
       // Perform payment operation
       final result = await _teyaSdk.makePaymentGBP(
         amountInPounds: amount,
@@ -148,12 +165,11 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
         setState(() {
           _isProcessing = false;
           _lastTransactionId = result.transactionId ?? 'Unknown';
-          _status = result.isSuccess 
+          _status = result.isSuccess
               ? 'Payment successful! Transaction ID: ${result.transactionId}'
               : 'Payment failed: ${result.errorMessage}';
         });
       }
-
     } catch (e) {
       if (mounted) {
         setState(() {
@@ -169,7 +185,8 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
       final cancelled = await _teyaSdk.cancelPayment();
       if (mounted) {
         setState(() {
-          _status = cancelled ? 'Payment cancelled' : 'Failed to cancel payment';
+          _status =
+              cancelled ? 'Payment cancelled' : 'Failed to cancel payment';
         });
       }
     } catch (e) {
@@ -224,7 +241,8 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: _isInitialized ? null : _initializeSdk,
-                        child: Text(_isInitialized ? 'Initialized' : 'Initialize SDK'),
+                        child: Text(
+                            _isInitialized ? 'Initialized' : 'Initialize SDK'),
                       ),
                     ],
                   ),
@@ -256,8 +274,12 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                              onPressed: _isInitialized && !_isProcessing ? _makePayment : null,
-                              child: Text(_isProcessing ? 'Processing...' : 'Make Payment'),
+                              onPressed: _isInitialized && !_isProcessing
+                                  ? _makePayment
+                                  : null,
+                              child: Text(_isProcessing
+                                  ? 'Processing...'
+                                  : 'Make Payment'),
                             ),
                           ),
                           const SizedBox(width: 8),
@@ -295,9 +317,10 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                         const SizedBox(height: 8),
                         Text(
                           'Last Transaction ID: $_lastTransactionId',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontFamily: 'monospace',
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontFamily: 'monospace',
+                                  ),
                         ),
                       ],
                     ],
@@ -314,9 +337,10 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                     children: [
                       Text(
                         'Instructions',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       const SizedBox(height: 8),
                       const Text(

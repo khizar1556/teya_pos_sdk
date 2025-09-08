@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'models/teya_config.dart';
 import 'models/teya_error.dart';
@@ -8,8 +9,8 @@ import 'models/payment_result.dart';
 
 /// Main class for interacting with the Teya SDK
 class TeyaSdk {
-  static const MethodChannel _channel = MethodChannel('teya_poslink_sdk');
-  static const EventChannel _paymentStateChannel = EventChannel('teya_poslink_sdk/payment_state');
+  static const MethodChannel _channel = MethodChannel('teya_pos_sdk');
+  static const EventChannel _paymentStateChannel = EventChannel('teya_pos_sdk/payment_state');
   
   static TeyaSdk? _instance;
   static TeyaSdk get instance => _instance ??= TeyaSdk._();
@@ -114,13 +115,20 @@ class TeyaSdk {
   /// Subscribe to payment state changes
   Stream<PaymentStateDetails> get paymentStateStream {
     _ensureInitialized();
-    
     return _paymentStateChannel
         .receiveBroadcastStream()
-        .map((event) => PaymentStateDetails.fromMap(Map<String, dynamic>.from(event)));
+        .map((event) {
+      try {
+        return PaymentStateDetails.fromMap(Map<String, dynamic>.from(event));
+      } catch (e, s) {
+        debugPrint("Error parsing PaymentStateDetails: $e\n$s");
+        // You can decide what to return on error
+        return PaymentStateDetails.fromMap({});
+      }
+    });
   }
 
-  /// Cancel the current payment
+/// Cancel the current payment
   Future<bool> cancelPayment() async {
     _ensureInitialized();
     
@@ -134,6 +142,18 @@ class TeyaSdk {
 
   /// Check if the SDK is initialized
   bool get isInitialized => _isInitialized;
+
+  /// Check if the SDK is ready for UI operations
+  Future<Map<String, dynamic>> isReadyForUI() async {
+    _ensureInitialized();
+    
+    try {
+      final result = await _channel.invokeMethod('isReadyForUI');
+      return Map<String, dynamic>.from(result);
+    } on PlatformException catch (e) {
+      throw TeyaError.fromMap(Map<String, dynamic>.from(e.details ?? {}));
+    }
+  }
 
   /// Dispose the SDK and clean up resources
   Future<void> dispose() async {

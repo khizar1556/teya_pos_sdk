@@ -5,11 +5,11 @@ public class TeyaPoslinkSdkPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
     private var eventSink: FlutterEventSink?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "teya_poslink_sdk", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "teya_pos_sdk", binaryMessenger: registrar.messenger())
         let instance = TeyaPoslinkSdkPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
         
-        let eventChannel = FlutterEventChannel(name: "teya_poslink_sdk/payment_state", binaryMessenger: registrar.messenger())
+        let eventChannel = FlutterEventChannel(name: "teya_pos_sdk/payment_state", binaryMessenger: registrar.messenger())
         eventChannel.setStreamHandler(instance)
     }
 

@@ -11,6 +11,9 @@ class PaymentResult {
   /// ePOS transaction ID
   final String? eposTransactionId;
   
+  /// Gateway payment ID for refunds
+  final String?  gatewayPaymentId;
+  
   /// Final payment state
   final PaymentState? finalState;
   
@@ -24,6 +27,7 @@ class PaymentResult {
     required this.isSuccess,
     this.transactionId,
     this.eposTransactionId,
+    this.gatewayPaymentId,
     this.finalState,
     this.errorMessage,
     this.metadata,
@@ -65,6 +69,7 @@ class PaymentResult {
       isSuccess: map['isSuccess'] ?? false,
       transactionId: map['transactionId'],
       eposTransactionId: map['eposTransactionId'],
+      gatewayPaymentId: map['gatewayPaymentId'],
       finalState: map['finalState'] != null 
           ? _parsePaymentState(map['finalState'])
           : null,
@@ -80,6 +85,7 @@ class PaymentResult {
       'isSuccess': isSuccess,
       'transactionId': transactionId,
       'eposTransactionId': eposTransactionId,
+      'gatewayPaymentId': gatewayPaymentId,
       'finalState': finalState != null 
           ? _paymentStateToString(finalState!)
           : null,
@@ -137,3 +143,5 @@ class PaymentResult {
     }
   }
 }
+
+
