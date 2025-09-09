@@ -152,6 +152,7 @@ class PaymentStateDetails {
       case 'successful':
         return PaymentState.successful;
       case 'cancelled':
+      case 'canceled':
         return PaymentState.cancelled;
       case 'cancelling':
         return PaymentState.cancelling;

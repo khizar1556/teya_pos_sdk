@@ -131,14 +131,6 @@ if (uiStatus['isReady']) {
 }
 ```
 
-### 5. Cancel a Payment
-
-```dart
-final cancelled = await teyaSdk.cancelPayment();
-if (cancelled) {
-  print('Payment cancelled successfully');
-}
-```
 
 ## API Reference
 

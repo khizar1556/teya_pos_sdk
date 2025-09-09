@@ -46,7 +46,6 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
             "initialize" -> initialize(call, result)
             "setupPosLink" -> setupPosLink(result)
             "makePayment" -> makePayment(call, result)
-            "cancelPayment" -> cancelPayment(result)
             "isReadyForUI" -> checkUIAvailability(result)
             else -> result.notImplemented()
         }
@@ -178,11 +177,6 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
         }
     }
 
-    private fun cancelPayment(result: Result) {
-        // Note: In the new SDK, cancellation is handled differently
-        // You would need to store the payment subscription and call unsubscribe
-        result.success(false) // Placeholder - implement based on your needs
-    }
 
     private fun checkUIAvailability(result: Result) {
         val isReady = activity != null && teyaPosLinkSDK != null
@@ -259,7 +253,7 @@ fun PaymentStateSubscription.PaymentStateDetails.toMap(): Map<String, Any?> {
         "currency" to currency,
         "state" to state.toString(),
         "gatewayPaymentId" to gatewayPaymentId?.toMap(),
-        "reason" to reason,
+        "reason" to (reason?.name?: ""),
         "metadata" to metadata?.toMap(),
         "wasUnsubscribed" to wasUnsubscribed
     )

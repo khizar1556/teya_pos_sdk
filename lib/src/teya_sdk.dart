@@ -128,17 +128,6 @@ class TeyaSdk {
     });
   }
 
-/// Cancel the current payment
-  Future<bool> cancelPayment() async {
-    _ensureInitialized();
-    
-    try {
-      final result = await _channel.invokeMethod('cancelPayment');
-      return result == true;
-    } on PlatformException catch (e) {
-      throw TeyaError.fromMap(Map<String, dynamic>.from(e.details ?? {}));
-    }
-  }
 
   /// Check if the SDK is initialized
   bool get isInitialized => _isInitialized;

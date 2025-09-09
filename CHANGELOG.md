@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.1] - 2025-01-27
+## [1.0.2]
+
+### Removed
+- `cancelPayment()` method from Dart SDK
+- Cancel payment functionality from Android implementation
+- Cancel payment button from example app UI
+- Cancel payment documentation from README
+
+### Changed
+- Simplified payment flow to focus on payment initiation and completion
+- Updated example app UI to remove cancel button and related functionality
+
+## [1.0.1]
 
 ### Added
 - Repository and issue tracker links to pub.dev package page
@@ -26,7 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed static client ID and secret from example application
 - Users now must provide their own credentials through UI
 
-## [1.0.0] - 2024-01-XX
+## [1.0.0]
 
 ### Added
 - Initial release of Flutter Teya SDK plugin

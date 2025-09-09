@@ -35,8 +35,10 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
   final TeyaSdk _teyaSdk = TeyaSdk.instance;
   final TextEditingController _amountController =
       TextEditingController(text: '5.50');
-  final TextEditingController _clientIdController = TextEditingController();
-  final TextEditingController _clientSecretController = TextEditingController();
+  final TextEditingController _clientIdController =
+      TextEditingController(text: 'e0a6cfa4-2034-4438-927e-3c8445de296f');
+  final TextEditingController _clientSecretController = TextEditingController(
+      text: 'iU5NEtiMgONYnA2UW1C2azbIB7q4iKzKjTNl5m2KvEI');
 
   bool _isInitialized = false;
   bool _isProcessing = false;
@@ -180,24 +182,6 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
     }
   }
 
-  Future<void> _cancelPayment() async {
-    try {
-      final cancelled = await _teyaSdk.cancelPayment();
-      if (mounted) {
-        setState(() {
-          _status =
-              cancelled ? 'Payment cancelled' : 'Failed to cancel payment';
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _status = 'Cancel error: $e';
-        });
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -270,28 +254,12 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: _isInitialized && !_isProcessing
-                                  ? _makePayment
-                                  : null,
-                              child: Text(_isProcessing
-                                  ? 'Processing...'
-                                  : 'Make Payment'),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          ElevatedButton(
-                            onPressed: _isProcessing ? _cancelPayment : null,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
-                              foregroundColor: Colors.white,
-                            ),
-                            child: const Text('Cancel'),
-                          ),
-                        ],
+                      ElevatedButton(
+                        onPressed: _isInitialized && !_isProcessing
+                            ? _makePayment
+                            : null,
+                        child: Text(
+                            _isProcessing ? 'Processing...' : 'Make Payment'),
                       ),
                     ],
                   ),
