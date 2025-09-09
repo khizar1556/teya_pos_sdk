@@ -35,10 +35,8 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
   final TeyaSdk _teyaSdk = TeyaSdk.instance;
   final TextEditingController _amountController =
       TextEditingController(text: '5.50');
-  final TextEditingController _clientIdController =
-      TextEditingController(text: 'e0a6cfa4-2034-4438-927e-3c8445de296f');
-  final TextEditingController _clientSecretController = TextEditingController(
-      text: 'iU5NEtiMgONYnA2UW1C2azbIB7q4iKzKjTNl5m2KvEI');
+  final TextEditingController _clientIdController = TextEditingController();
+  final TextEditingController _clientSecretController = TextEditingController();
 
   bool _isInitialized = false;
   bool _isProcessing = false;
@@ -210,6 +208,7 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                         controller: _clientIdController,
                         decoration: const InputDecoration(
                           labelText: 'Client ID',
+                          hintText: 'Enter your Teya client ID',
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -218,6 +217,7 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                         controller: _clientSecretController,
                         decoration: const InputDecoration(
                           labelText: 'Client Secret',
+                          hintText: 'Enter your Teya client secret',
                           border: OutlineInputBorder(),
                         ),
                         obscureText: true,
