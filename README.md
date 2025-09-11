@@ -1,7 +1,13 @@
-# Teya PosLink SDK
+# Teya PosLink SDK - Flutter Payment Terminal Integration
 
 [![pub package](https://img.shields.io/pub/v/teya_pos_sdk.svg)](https://pub.dartlang.org/packages/teya_pos_sdk)
-
+[![Flutter](https://img.shields.io/badge/Flutter-3.10%2B-blue.svg)](https://flutter.dev)
+[![Android](https://img.shields.io/badge/Android-API%2024%2B-green.svg)](https://developer.android.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
 A Flutter plugin that provides access to the Teya PosLink SDK for Android. This plugin allows you to integrate Teya payment terminals into your Flutter applications.
 
 **Author**: [Khizar Rehman](https://khizarrehman.com/)
@@ -18,19 +24,26 @@ A Flutter plugin that provides access to the Teya PosLink SDK for Android. This 
 - ✅ Support for multiple currencies (GBP, EUR, USD)
 - ✅ Android support
 - ❌ iOS support (not available - Teya SDK limitation)
-
-## Installation
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
+## 📦 Installation
 
 Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  teya_pos_sdk: ^1.0.1
+  teya_pos_sdk: ^1.0.4
+```
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
+Then run:
+```bash
+flutter pub get
 ```
 
-## Setup
+## ⚙️ Setup
 
-### Android Setup
+### Android Configuration
 
 1. **Minimum SDK Version**
 
@@ -43,7 +56,8 @@ dependencies:
        }
    }
    ```
-
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
 2. **Permissions**
 
    Add the following permissions to your `android/app/src/main/AndroidManifest.xml`:
@@ -53,8 +67,11 @@ dependencies:
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    ```
 
-## Usage
+## 🚀 Quick Start Guide
 
+### Basic Usage
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
 ### 1. Initialize the SDK
 
 ```dart
@@ -95,7 +112,8 @@ if (result.isSuccess) {
 ```
 
 ### 3. Listen to Payment State Changes
-
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
 ```dart
 teyaSdk.paymentStateStream.listen((state) {
   print('Payment state: ${state.state}');
@@ -296,5 +314,6 @@ try {
 This plugin is provided as-is. Please refer to Teya's licensing terms for the underlying SDK.
 
 ## Support
-
+<!---Teya pos SDK--->
+<!---Teya PosLink SDK--->
 For issues related to this Flutter plugin, please create an issue in the repository. For Teya SDK specific issues, please contact Teya support.

@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4]
+
+### Changed
+- Misc
+- Enhanced package description and metadata
+
 ## [1.0.3]
+
+### Security
+- Remove hardcoded client credentials from example app
+- Add placeholder text to guide users to enter their own credentials
+- Improve security by not exposing credentials in example code
+
+## [1.0.2]
 
 ### Removed
 - `cancelPayment()` method from Dart SDK

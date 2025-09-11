@@ -35,8 +35,10 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
   final TeyaSdk _teyaSdk = TeyaSdk.instance;
   final TextEditingController _amountController =
       TextEditingController(text: '5.50');
-  final TextEditingController _clientIdController = TextEditingController();
-  final TextEditingController _clientSecretController = TextEditingController();
+  final TextEditingController _clientIdController =
+      TextEditingController(text: 'e0a6cfa4-2034-4438-927e-3c8445de296f');
+  final TextEditingController _clientSecretController = TextEditingController(
+      text: 'iU5NEtiMgONYnA2UW1C2azbIB7q4iKzKjTNl5m2KvEI');
 
   bool _isInitialized = false;
   bool _isProcessing = false;
