@@ -10,11 +10,12 @@ import 'models/payment_result.dart';
 /// Main class for interacting with the Teya SDK
 class TeyaSdk {
   static const MethodChannel _channel = MethodChannel('teya_pos_sdk');
-  static const EventChannel _paymentStateChannel = EventChannel('teya_pos_sdk/payment_state');
-  
+  static const EventChannel _paymentStateChannel =
+      EventChannel('teya_pos_sdk/payment_state');
+
   static TeyaSdk? _instance;
   static TeyaSdk get instance => _instance ??= TeyaSdk._();
-  
+
   TeyaSdk._();
 
   bool _isInitialized = false;
@@ -33,7 +34,8 @@ class TeyaSdk {
     if (Platform.isIOS) {
       throw TeyaError(
         code: TeyaErrorCodes.platformNotSupported,
-        message: 'iOS platform is not supported by Teya SDK. Please use Android for payment processing.',
+        message:
+            'iOS platform is not supported by Teya SDK. Please use Android for payment processing.',
         details: {
           'platform': 'iOS',
           'supported_platforms': ['Android'],
@@ -53,7 +55,7 @@ class TeyaSdk {
   /// Setup PosLink integration
   Future<void> setupPosLink() async {
     _ensureInitialized();
-    
+
     try {
       await _channel.invokeMethod('setupPosLink');
     } on PlatformException catch (e) {
@@ -62,7 +64,7 @@ class TeyaSdk {
   }
 
   /// Make a payment
-  /// 
+  ///
   /// [amount] - Amount in the smallest currency unit (e.g., cents for GBP)
   /// [currency] - ISO 4217 currency code (e.g., "GBP", "EUR")
   /// [transactionId] - Unique transaction identifier (optional, will be generated if not provided)
@@ -74,7 +76,7 @@ class TeyaSdk {
     int? tip,
   }) async {
     _ensureInitialized();
-    
+
     try {
       final result = await _channel.invokeMethod('makePayment', {
         'amount': amount,
@@ -82,7 +84,7 @@ class TeyaSdk {
         'transactionId': transactionId,
         'tip': tip,
       });
-      
+
       return PaymentResult.fromMap(Map<String, dynamic>.from(result));
     } on PlatformException catch (e) {
       throw TeyaError.fromMap(Map<String, dynamic>.from(e.details ?? {}));
@@ -90,7 +92,7 @@ class TeyaSdk {
   }
 
   /// Make a payment with amount in major currency units (e.g., pounds, euros)
-  /// 
+  ///
   /// [amount] - Amount in major currency units (e.g., 5.50 for £5.50)
   /// [currency] - ISO 4217 currency code (e.g., "GBP", "EUR")
   /// [transactionId] - Unique transaction identifier (optional, will be generated if not provided)
@@ -103,7 +105,7 @@ class TeyaSdk {
   }) async {
     final amountInMinorUnits = (amount * 100).round();
     final tipInMinorUnits = tip != null ? (tip * 100).round() : null;
-    
+
     return makePayment(
       amount: amountInMinorUnits,
       currency: currency,
@@ -115,9 +117,7 @@ class TeyaSdk {
   /// Subscribe to payment state changes
   Stream<PaymentStateDetails> get paymentStateStream {
     _ensureInitialized();
-    return _paymentStateChannel
-        .receiveBroadcastStream()
-        .map((event) {
+    return _paymentStateChannel.receiveBroadcastStream().map((event) {
       try {
         return PaymentStateDetails.fromMap(Map<String, dynamic>.from(event));
       } catch (e, s) {
@@ -128,14 +128,13 @@ class TeyaSdk {
     });
   }
 
-
   /// Check if the SDK is initialized
   bool get isInitialized => _isInitialized;
 
   /// Check if the SDK is ready for UI operations
   Future<Map<String, dynamic>> isReadyForUI() async {
     _ensureInitialized();
-    
+
     try {
       final result = await _channel.invokeMethod('isReadyForUI');
       return Map<String, dynamic>.from(result);

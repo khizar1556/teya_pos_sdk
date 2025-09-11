@@ -1,12 +1,11 @@
 /// Configuration for Teya SDK initialization
 class TeyaConfig {
-  
   /// Client ID obtained from Teya developer portal
   final String clientId;
-  
+
   /// Client secret obtained from Teya developer portal
   final String clientSecret;
-  
+
   /// Whether to use production environment (default: false for sandbox)
   final bool isProduction;
 

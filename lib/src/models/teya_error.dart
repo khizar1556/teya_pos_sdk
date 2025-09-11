@@ -2,10 +2,10 @@
 class TeyaError {
   /// Error code
   final String code;
-  
+
   /// Error message
   final String message;
-  
+
   /// Additional error details
   final Map<String, dynamic>? details;
 
@@ -19,7 +19,9 @@ class TeyaError {
     return TeyaError(
       code: map['code'] ?? 'UNKNOWN_ERROR',
       message: map['message'] ?? 'An unknown error occurred',
-      details: map['details'] != null ? Map<String, dynamic>.from(map['details']) : null,
+      details: map['details'] != null
+          ? Map<String, dynamic>.from(map['details'])
+          : null,
     );
   }
 
