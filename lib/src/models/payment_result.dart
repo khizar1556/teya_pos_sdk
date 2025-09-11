@@ -78,9 +78,8 @@ class PaymentResult {
               ? _parsePaymentState(map['finalState'])
               : null),
       errorMessage: map['errorMessage'],
-      metadata: map['metadata'] != null
-          ? Metadata.fromMap(map['metadata'])
-          : null,
+      metadata:
+          map['metadata'] != null ? Metadata.fromMap(map['metadata']) : null,
     );
   }
 
