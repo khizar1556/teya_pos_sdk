@@ -147,15 +147,10 @@ class TeyaPoslinkSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Ev
                     if (state.isFinal) {
                         when (state.state) {
                             PaymentStateSubscription.PaymentState.Successful -> {
-                                result.success(mapOf(
-                                    "isSuccess" to true,
-                                    "transactionId" to transactionId,
-                                    "eposTransactionId" to state.eposTransactionId,
-                                    "gatewayPaymentId" to state.gatewayPaymentId,
-                                    "finalState" to "successful",
-                                    "metadata" to state.metadata
-                                ))
-                                //result.success(state.toMap())
+                                val stateMap = state.toMap().toMutableMap()
+                                stateMap["isSuccess"] = true
+                                stateMap["transactionId"] = transactionId
+                                result.success(stateMap)
                             }
                             PaymentStateSubscription.PaymentState.ProcessingFailed,
                             PaymentStateSubscription.PaymentState.Canceled,

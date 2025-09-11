@@ -35,10 +35,8 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
   final TeyaSdk _teyaSdk = TeyaSdk.instance;
   final TextEditingController _amountController =
       TextEditingController(text: '5.50');
-  final TextEditingController _clientIdController =
-      TextEditingController(text: 'e0a6cfa4-2034-4438-927e-3c8445de296f');
-  final TextEditingController _clientSecretController = TextEditingController(
-      text: 'iU5NEtiMgONYnA2UW1C2azbIB7q4iKzKjTNl5m2KvEI');
+  final TextEditingController _clientIdController = TextEditingController();
+  final TextEditingController _clientSecretController = TextEditingController();
 
   bool _isInitialized = false;
   bool _isProcessing = false;
@@ -119,7 +117,7 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                 if (mounted) {
                   setState(() {
                     _status =
-                        'Payment state: ${state.state.name} (Final: ${state.isFinal})\n(Data : ${state.toString()})';
+                        'Payment state: ${state.state.name} (Final: ${state.isFinal})\nGateway Payment ID: ${state.gatewayPaymentId?.id ?? 'N/A'}\n(Data : ${state.toString()})';
                   });
                 }
               });
@@ -166,9 +164,10 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
       if (mounted) {
         setState(() {
           _isProcessing = false;
-          _lastTransactionId = result.transactionId ?? 'Unknown';
+          _lastTransactionId =
+              result.gatewayPaymentId?.id ?? result.transactionId ?? 'Unknown';
           _status = result.isSuccess
-              ? 'Payment successful! Transaction ID: ${result.transactionId}'
+              ? 'Payment successful! Gateway Payment ID: ${result.gatewayPaymentId?.id ?? 'N/A'}, Transaction ID: ${result.transactionId}'
               : 'Payment failed: ${result.errorMessage}';
         });
       }
@@ -286,7 +285,7 @@ class _TeyaPaymentPageState extends State<TeyaPaymentPage> {
                       if (_lastTransactionId.isNotEmpty) ...[
                         const SizedBox(height: 8),
                         Text(
-                          'Last Transaction ID: $_lastTransactionId',
+                          'Last Gateway Payment ID: $_lastTransactionId',
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontFamily: 'monospace',

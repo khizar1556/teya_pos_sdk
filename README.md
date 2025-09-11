@@ -32,7 +32,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  teya_pos_sdk: ^1.0.4
+  teya_pos_sdk: ^1.0.5
 ```
 <!---Teya pos SDK--->
 <!---Teya PosLink SDK--->

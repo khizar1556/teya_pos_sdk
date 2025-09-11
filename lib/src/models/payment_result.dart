@@ -12,7 +12,7 @@ class PaymentResult {
   final String? eposTransactionId;
 
   /// Gateway payment ID for refunds
-  final String? gatewayPaymentId;
+  final GatewayPaymentId? gatewayPaymentId;
 
   /// Final payment state
   final PaymentState? finalState;
@@ -21,7 +21,7 @@ class PaymentResult {
   final String? errorMessage;
 
   /// Additional metadata
-  final Map<String, dynamic>? metadata;
+  final Metadata? metadata;
 
   const PaymentResult({
     required this.isSuccess,
@@ -37,7 +37,7 @@ class PaymentResult {
   factory PaymentResult.success({
     required String transactionId,
     String? eposTransactionId,
-    Map<String, dynamic>? metadata,
+    Metadata? metadata,
   }) {
     return PaymentResult(
       isSuccess: true,
@@ -53,7 +53,7 @@ class PaymentResult {
     String? transactionId,
     String? errorMessage,
     PaymentState? finalState,
-    Map<String, dynamic>? metadata,
+    Metadata? metadata,
   }) {
     return PaymentResult(
       isSuccess: false,
@@ -69,13 +69,17 @@ class PaymentResult {
       isSuccess: map['isSuccess'] ?? false,
       transactionId: map['transactionId'],
       eposTransactionId: map['eposTransactionId'],
-      gatewayPaymentId: map['gatewayPaymentId'],
-      finalState: map['finalState'] != null
-          ? _parsePaymentState(map['finalState'])
+      gatewayPaymentId: map['gatewayPaymentId'] != null
+          ? GatewayPaymentId.fromMap(map['gatewayPaymentId'])
           : null,
+      finalState: map['state'] != null
+          ? _parsePaymentState(map['state'])
+          : (map['finalState'] != null
+              ? _parsePaymentState(map['finalState'])
+              : null),
       errorMessage: map['errorMessage'],
       metadata: map['metadata'] != null
-          ? Map<String, dynamic>.from(map['metadata'])
+          ? Metadata.fromMap(map['metadata'])
           : null,
     );
   }
@@ -85,11 +89,11 @@ class PaymentResult {
       'isSuccess': isSuccess,
       'transactionId': transactionId,
       'eposTransactionId': eposTransactionId,
-      'gatewayPaymentId': gatewayPaymentId,
+      'gatewayPaymentId': gatewayPaymentId?.toMap(),
       'finalState':
           finalState != null ? _paymentStateToString(finalState!) : null,
       'errorMessage': errorMessage,
-      'metadata': metadata,
+      'metadata': metadata?.toMap(),
     };
   }
 

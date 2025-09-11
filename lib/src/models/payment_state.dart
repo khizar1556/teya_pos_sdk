@@ -284,6 +284,18 @@ class Metadata {
       authorisationCode: map["authorisationCode"],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'card': card?.toMap(),
+      'entryMode': entryMode,
+      'verificationMethod': verificationMethod,
+      'applicationId': applicationId,
+      'merchantAcquiringId': merchantAcquiringId,
+      'responseCode': responseCode,
+      'authorisationCode': authorisationCode,
+    };
+  }
 }
 
 class CardModel {
@@ -307,6 +319,15 @@ class CardModel {
       type: map["type"],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'last4': last4,
+      'issuingCountry': issuingCountry,
+      'brand': brand,
+      'type': type,
+    };
+  }
 }
 
 class GatewayPaymentId {
@@ -320,5 +341,11 @@ class GatewayPaymentId {
     return GatewayPaymentId(
       id: map["id"],
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+    };
   }
 }

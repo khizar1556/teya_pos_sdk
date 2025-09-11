@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5]
+
+### Added
+- Enhanced payment result handling with structured metadata
+- Gateway Payment ID support in payment results
+- Proper Metadata model integration for payment results
+
+### Changed
+- Updated PaymentResult to use GatewayPaymentId object instead of String
+- Updated PaymentResult to use structured Metadata model instead of Map<String, dynamic>
+- Enhanced Android plugin serialization to use consistent state.toMap() approach
+- Improved payment state display to show Gateway Payment ID in real-time
+- Updated example app to prioritize Gateway Payment ID over Transaction ID
+
+### Fixed
+- Fixed Android plugin serialization issues that caused crashes
+- Improved data consistency between payment state stream and payment results
+- Enhanced type safety for metadata access in payment results
+
 ## [1.0.4]
 
 ### Changed
